@@ -24,11 +24,11 @@ Last updated: 2026-04-02
 | `team:sre` | Site Reliability Engineering | `#D93F0B` |
 | `team:strategist` | 高階策略合夥人 | `#6B8E23` |
 | `team:legal` | Legal Counsel 法務顧問 | `#808000` |
-| `team:dev` | Development (CICADA AI Worker) | `#4169E1` |
+| `team:dev` | Development (AI Worker) | `#4169E1` |
 
 ## Notes
 
-1. **`team:dev`** — 代表 CICADA Issue Worker（AI agent），不是人類 team member
+1. **`team:dev`** — 代表 AI Issue Worker，不是人類 team member
 2. **一個 issue 可以有多個 team label** — 代表需要多方協作
 
 ## 使用規則
