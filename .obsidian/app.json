@@ -1,0 +1,10 @@
+{
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Inbox",
+  "attachmentFolderPath": "assets",
+  "showLineNumber": true,
+  "spellcheck": false,
+  "strictLineBreaks": false,
+  "readableLineLength": true
+}
