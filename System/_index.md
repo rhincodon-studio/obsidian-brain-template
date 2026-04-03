@@ -24,7 +24,19 @@ summary: 系統運行支持
 - [[pending_approvals]] — 審批隊列
 - [[skills]] — 技能定義
 
-## 目錄結構
+## 子目錄
 
-- `templates/` — 模板文件
-- `session_logs/` — 完整會話存檔
+- `templates/` — 模板文件（Daily Note 等）
+- `session_logs/` — 完整會話存檔（AI 自動寫入）
+
+## 偏好學習流程
+
+```
+對話中 AI 觀察到偏好
+        ↓
+寫入 candidates.md（不打斷你）
+        ↓
+執行 /digest
+        ↓
+你確認後晉升到 PROFILE 或 OPERATING_RULES
+```

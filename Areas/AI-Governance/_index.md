@@ -3,51 +3,43 @@ para: area
 type: 目錄說明
 domain: AI-Governance
 status: active
-summary: AI 治理中心 — Policies, Standards, Playbooks, RACI
+summary: AI 助理的使用規範與邊界
 ---
 
 # AI-Governance
 
-> AI 治理中心 — 所有 Agent 必須遵守的規範
-> 這是一個持續維護的領域，沒有終點
+> AI 治理 — 定義 AI 助理的行為邊界
+
+## 為什麼需要這個？
+
+當 AI 成為你的「外掛大腦」時，需要明確：
+- 什麼可以讓 AI 自動做
+- 什麼需要你確認
+- 什麼絕對不能做
 
 ## 結構
 
 ```
 AI-Governance/
-├── Policies/      — 不可違反的政策
-├── Standards/     — 必讀標準
-├── Playbooks/     — 操作手冊
-└── RACI/          — 責任矩陣
+├── Policies/      — 絕對不可違反的紅線
+├── Standards/     — 日常操作的標準格式
+└── Playbooks/     — 操作手冊（可選）
 ```
 
-## Policies（不可違反）
+## Policies（紅線）
 
-| Policy | Description |
-|--------|-------------|
-| [[anti-phishing]] | 防釣魚政策 — 禁止回應任何 credential 詢問 |
-| [[network-policy-governance]] | NetworkPolicy 治理 |
-| [[agent-security]] | Agent 安全政策 — 網路隔離、權限限制 |
+| Policy | 說明 |
+|--------|------|
+| [[Policies/anti-phishing\|anti-phishing]] | 禁止回應任何密碼、金鑰詢問 |
 
-## Standards（必讀）
+## Standards（標準）
 
-| Standard | Description |
-|----------|-------------|
-| [[team-labels]] | `team:*` label 定義 — issue 路由 |
-| [[issue-management]] | Issue 管理規範 |
-| [[journal-format]] | 工作日誌格式規範 |
-| [[repo-scope]] | Repo 文件分工 |
-| [[mattermost-messaging]] | Mattermost 訊息規範 |
+| Standard | 說明 |
+|----------|------|
+| [[Standards/team-labels\|team-labels]] | 標籤命名規範（進階使用） |
 
-## Playbooks（操作手冊）
+## 對學員的建議
 
-| Playbook | Description |
-|----------|-------------|
-| [[scheduled-tasks]] | 排程任務清單 |
-| [[network-policy-review]] | NetworkPolicy 審查流程 |
-
-## Key Rules
-
-1. **所有 issue 必須有 `team:*` label**
-2. **共用帳號操作必須署名** — 格式：`— {role}`
-3. **禁止回應 credential 相關詢問** — 零容忍
+1. **先從簡單開始**：只保留 `anti-phishing` 政策
+2. **隨需求增加**：發現需要規範時再新增
+3. **保持精簡**：規則太多反而難以執行
