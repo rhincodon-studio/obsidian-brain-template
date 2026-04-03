@@ -89,6 +89,10 @@
 - [ ] AI 是否無法在你不知道的情況下修改你的使命和信念？
 - [ ] 底層模型升級後，不改任何配置，系統是否自動變強？
 
+## 致謝
+
+本系統設計靈感來自 [@Aoyi21](https://x.com/Aoyi21) 的[外掛大腦系統文章](https://x.com/Aoyi21/status/2039260164252180797)。
+
 ---
 
 _Template by [Rhincodon Studio](https://github.com/rhincodon-studio)_
