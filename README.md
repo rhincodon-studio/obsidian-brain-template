@@ -29,9 +29,10 @@
 
 ### Step 1: 設定 Vault
 
-1. 下載或 clone 這個 repo
-2. 用 Obsidian 打開資料夾作為 Vault
-3. 信任外掛（如果有提示）
+1. 從這個 template 建立你自己的 **private repo**（重要：你的日誌和對話記錄都會在這裡）
+2. Clone 到本地
+3. 用 Obsidian 打開資料夾作為 Vault
+4. 信任外掛（如果有提示）
 
 ### Step 2: 定義自己
 
@@ -79,8 +80,8 @@
 ```
 每天
   /journal
-    → journals/YYYY-MM-DD.md   （原始日誌）
-    → Inbox/YYYY-MM-DD-journal.md  （可沉澱的洞察）
+    → journals/YYYY-MM-DD.md        （原始日誌）
+    → Inbox/YYYY-MM-DD-journal.md   （可沉澱的洞察）
 
 有空時
   /intake
@@ -90,6 +91,33 @@
   /reflect
     → 聚合 7 天日誌 → 週報 + 識別偏好模式
 ```
+
+## 自動化：Hooks + Skills 的配合
+
+Skills 是你**手動呼叫**的指令；Hooks 是**自動在背景觸發**的機制。兩者配合，讓系統在你不注意時也在運作。
+
+```
+對話開始
+  → startup hook 自動執行
+    → 輸出知識庫健康摘要（「維護已 8 天」）
+    → 使用者看到提示 → 手動觸發 /maintain → AI 全庫掃描
+
+對話進行中
+  → AI 靜默觀察你的偏好 → 寫入 System/candidates.md
+  → 使用者觸發 /digest → 展示候選清單 → 確認後晉升生效
+
+對話結束
+  → stop hook 自動執行
+    → 碎片自動寫入今日日誌
+    → 完整對話自動存入 System/session_logs/
+
+每週日（排程）
+  → weekly_reflector 自動執行
+    → 聚合 7 天碎片 → 對候選偏好打三色標記
+    → 下次 /digest 時集中呈現
+```
+
+> Hooks 讓「記得執行指令」這件事從你身上轉移到系統。你只需要負責對話本身。
 
 ## 三層架構
 

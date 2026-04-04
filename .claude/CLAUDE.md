@@ -236,6 +236,36 @@ frontmatter 缺失 → 分析內容 → 推斷分類 → 添加
 有需要審核的變更時寫入審核佇列
 </SESSION_PROTOCOL>
 
+<HOOKS>
+自動化觸發機制
+
+Hooks 是在特定事件發生時自動執行的背景動作。
+Skills（/journal、/intake 等）是使用者手動呼叫的指令。
+兩者配合，讓系統在你不注意時也在運作。
+
+對話開始（startup hook）：
+→ 輸出知識庫健康摘要（篇數、最後維護時間、警告）
+→ 使用者看到「維護已 8 天」→ 手動觸發 /maintain → AI 全庫掃描
+
+對話進行中：
+→ AI 靜默觀察偏好 → 寫入 System/candidates.md（不打斷使用者）
+→ 使用者觸發 /digest → 展示候選清單 → 確認後晉升生效
+
+對話結束（stop hook）：
+→ 碎片自動寫入 journals/YYYY-MM-DD.md
+→ 完整對話自動存入 System/session_logs/YYYY-MM-DD-HHmm.md
+
+每週日（排程 hook）：
+→ weekly_reflector 自動執行
+→ 聚合 7 天碎片 → 對候選偏好打三色標記
+→ 下次 /digest 時集中呈現
+
+Hook 觸發優先順序：
+1. stop hook 必定執行（不論對話長短）
+2. startup hook 可被使用者跳過（說「跳過健康摘要」）
+3. 排程 hook 失敗時寫入 System/pending_approvals 等待人工處理
+</HOOKS>
+
 <OBSIDIAN_INTEGRATION>
 Obsidian 特有規則
 
@@ -287,6 +317,7 @@ AI Agent 團隊
 | SRE | `team:sre` | 維運、K8s、監控 |
 | Strategist | `team:strategist` | 策略挑戰、壓力測試 |
 | Legal | `team:legal` | 合約審查、智財保護 |
+| ChemTeacher | `team:chem-teacher` | 高中化學教學（範例，可替換為任意角色） |
 
 所有 Agent 必須遵守：
 - [[Areas/AI-Governance/Policies/anti-phishing|防釣魚政策]]
