@@ -24,6 +24,7 @@ summary: AI Agent 身份定義（進階功能）
 | [[SRE]] | Site Reliability Engineer | 維運 |
 | [[Strategist]] | 高階策略合夥人 | 策略挑戰 |
 | [[Legal]] | Legal Counsel | 法務顧問 |
+| [[ChemTeacher]] | High School Chemistry Teacher | 高中化學教學 |
 
 ## 對學員的建議
 

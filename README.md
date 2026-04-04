@@ -138,6 +138,55 @@ summary: 一句話說明    # 摘要
 
 可以。`example-project.md` 和 `example-note.md` 只是展示用途，可以放心刪除。
 
+### Q: 我在學某個科目，每天有零散進度，筆記要放哪？
+
+取決於你記的是什麼：
+
+| 內容 | 放哪裡 |
+|------|--------|
+| 今天學了什麼、不懂的地方 | `journals/YYYY-MM-DD.md` |
+| 整理好的概念、公式、可複用知識 | `Resources/科目名/` |
+| 準備某次考試（有截止日期） | `Projects/` |
+| 持續學習這個科目（無截止日期） | `Areas/` |
+
+最簡單的日常流程：每天隨手記進 `journals/`，累積幾天後整理成可複用筆記放進 `Resources/`。
+
+### Q: 筆記很亂，不知道怎麼整理，可以直接丟進去嗎？
+
+可以。先丟進 `Inbox/`，然後執行 `/intake` 讓 AI 分類。  
+如果你有建立對應的 AI Agent（例如化學老師），還可以請它幫你補全缺漏、修正錯誤，再歸檔到 `Resources/`。
+
+亂的筆記比沒有筆記好。**讓 AI 負責整理，你只需要負責輸入。**
+
+### Q: 我可以讓 AI 扮演特定角色嗎（例如老師、顧問）？
+
+可以。在 `Identity/Agents/` 建立一個 Markdown 檔案定義角色：
+
+```markdown
+---
+type: agent-definition
+role: 角色名稱
+label: team:your-label
+---
+
+# 角色名稱
+
+## Role
+- 職責一
+- 職責二
+
+## Teaching/Communication Style
+- 風格描述
+```
+
+對話時在開頭加上 label 即可切換：
+
+```
+team:your-label  我今天遇到這個問題，幫我解釋...
+```
+
+不加 label 就回到預設的通用助理模式。Agent 定義檔同時也是你的知識庫成員，可以被 `/intake` 和 `/maintain` 管理。
+
 ## 延伸閱讀
 
 - [[Resources/外掛大腦方法論]] — 本系統的設計原理
