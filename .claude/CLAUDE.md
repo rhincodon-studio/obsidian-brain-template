@@ -239,31 +239,44 @@ frontmatter 缺失 → 分析內容 → 推斷分類 → 添加
 <HOOKS>
 自動化觸發機制
 
-Hooks 是在特定事件發生時自動執行的背景動作。
-Skills（/journal、/intake 等）是使用者手動呼叫的指令。
-兩者配合，讓系統在你不注意時也在運作。
+兩層分工：
+- Claude Code Stop hook（shell）— 保障檔案結構存在
+- AI 本身（依本文件指令）— 負責填寫實際內容
 
-對話開始（startup hook）：
-→ 輸出知識庫健康摘要（篇數、最後維護時間、警告）
-→ 使用者看到「維護已 8 天」→ 手動觸發 /maintain → AI 全庫掃描
+Skills（/journal、/intake 等）是使用者手動呼叫的指令，三者配合讓系統在你不注意時也在運作。
+
+## 完整流程
+
+對話開始：
+→ settings.json contextFiles 自動注入 TELOS / CONTEXT / PROFILE / OPERATING_RULES
+→ AI 讀取後依 SESSION_PROTOCOL 輸出知識庫健康摘要（篇數、警告、待審批）
+→ 使用者看到「維護已 N 天」→ 手動觸發 /maintain → AI 全庫掃描
+（startup 由 AI 執行，非 shell hook；使用者可說「跳過健康摘要」略過）
 
 對話進行中：
 → AI 靜默觀察偏好 → 寫入 System/candidates.md（不打斷使用者）
 → 使用者觸發 /digest → 展示候選清單 → 確認後晉升生效
 
-對話結束（stop hook）：
-→ 碎片自動寫入 journals/YYYY-MM-DD.md
-→ 完整對話自動存入 System/session_logs/YYYY-MM-DD-HHmm.md
+對話結束（AI 負責，Stop hook 保障）：
+→ AI 將關鍵碎片寫入 System/working-memory/daily/YYYY-MM-DD.md
+→ AI 將對話摘要寫入 System/session_logs/YYYY-MM-DD-HHmm.md
+→ Stop hook（.claude/hooks/stop-audit.sh / .ps1）自動執行：
+   確保上述兩個檔案存在（AI 未填則建立空殼，下次補填）
 
-每週日（排程 hook）：
-→ weekly_reflector 自動執行
+每週（排程，尚未設定）：
+→ 需透過 /schedule 或 cron 定期執行 /reflect
 → 聚合 7 天碎片 → 對候選偏好打三色標記
 → 下次 /digest 時集中呈現
 
-Hook 觸發優先順序：
-1. stop hook 必定執行（不論對話長短）
-2. startup hook 可被使用者跳過（說「跳過健康摘要」）
-3. 排程 hook 失敗時寫入 System/pending_approvals 等待人工處理
+## 各層責任
+
+| 事件 | 執行者 | 保障強度 |
+|------|--------|---------|
+| 啟動注入 contextFiles | settings.json 自動 | 強（確定執行） |
+| 健康摘要 | AI（CLAUDE.md 指令） | 中（AI 可跳過） |
+| 碎片 / 摘要填寫 | AI（SESSION_PROTOCOL） | 中（AI 可跳過） |
+| 檔案結構建立 | Stop hook shell script | 強（確定執行） |
+| 週度蒸餾 | 排程（待設定） | 未設定 |
 </HOOKS>
 
 <OBSIDIAN_INTEGRATION>
