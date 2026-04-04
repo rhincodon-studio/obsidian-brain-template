@@ -1,0 +1,20 @@
+{
+  "contextFiles": [
+    "Identity/TELOS.md",
+    "Identity/CONTEXT.md",
+    "Identity/PROFILE.md",
+    "System/OPERATING_RULES.md"
+  ],
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/stop-audit.sh 2>/dev/null || powershell.exe -ExecutionPolicy Bypass -File .claude/hooks/stop-audit.ps1"
+          }
+        ]
+      }
+    ]
+  }
+}
